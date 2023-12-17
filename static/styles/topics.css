@@ -19,3 +19,62 @@ h2 {
     cursor: pointer;
     opacity: 0.75;
 }
+
+.topics_list {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.li {
+    margin: 10px 0;
+}
+
+.themes {
+    text-decoration: none !important;
+    color: #333 !important;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.1s ease-in-out;
+}
+
+.themes:hover {
+    color: rgba(0, 182, 88, 0.57) !important;
+}
+
+.add_theme {
+    border: 1px solid rgba(0, 182, 88, 0.57);
+    background: rgba(0, 182, 88, 0.57);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    border-radius: 25px;
+    text-decoration: none;
+    margin-left: 650px;
+}
+
+.add_theme:hover {
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+.add_theme:active {
+    transform: scale(0.95);
+}
+
+.add_theme:focus {
+    outline: none;
+}

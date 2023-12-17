@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Elysium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="../static/styles/topics.css">
 </head>
 <body>
 {% include 'header.html' %}
-<h2 style="margin-top: 30px; margin-bottom: 30px;">{{ forum.title }} - темы</h2>
-<div>
+<div class="topics_list">
+    <h2>«{{ forum.title }}» - темы</h2>
     <ul>
         {% for topic in topics %}
-            <li><a href="{{ url_for('topic', topic_id=topic.id) }}">{{ topic.title }}</a></li>
+            <li class="li"><i style="padding: 8px;" class="fas fa-book"></i><a class="themes" href="{{ url_for('topic', topic_id=topic.id) }}">{{ topic.title }}</a></li>
         {% endfor %}
     </ul>
-    <a href="{{ url_for('new_topic', user_id=user.id, forum_id=forum.id) }}">New Topic</a>
 </div>
+<a class="add_theme" href="{{ url_for('new_topic', user_id=user.id, forum_id=forum.id) }}">Создать тему</a>
 </body>
 </html>

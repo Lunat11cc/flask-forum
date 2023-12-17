@@ -7,7 +7,8 @@
 </head>
 <body>
 {% include 'header.html' %}
-<h1>{{ forum.title }} - новая тема</h1>
+<div>
+    <h1>{{ forum.title }} - новая тема</h1>
 <form method="post">
     <label for="title">Title:</label>
     <input type="text" name="title" required>
@@ -17,5 +18,6 @@
     <br>
     <button type="submit">Create Topic</button>
 </form>
+</div>
 </body>
 </html>
