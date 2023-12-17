@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ forum.title }} - темы</title>
+    <title>Elysium</title>
     <link rel="stylesheet" href="../static/styles/topics.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
             <li><a href="{{ url_for('topic', topic_id=topic.id) }}">{{ topic.title }}</a></li>
         {% endfor %}
     </ul>
-    <a href="{{ url_for('new_topic', forum_id=forum.id) }}" class="btn">Создать тему</a>
+    <a href="{{ url_for('new_topic', user_id=user.id, forum_id=forum.id) }}">New Topic</a>
 </div>
 </body>
 </html>

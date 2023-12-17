@@ -55,7 +55,7 @@ def login_required(func):
         if 'user_id' not in session:
             return redirect('/login')
         user = User.query.get(session['user_id'])
-        return func(user, *args, **kwargs)
+        return func(user=user, *args, **kwargs)
 
     return wrapper
 
@@ -184,8 +184,9 @@ def topic_list(forum_id):
 
 
 @login_required
-@app.route('/new_topic/<int:forum_id>', methods=['GET', 'POST'])
-def new_topic(forum_id):
+@app.route('/new_topic/<int:user_id>/<int:forum_id>', methods=['GET', 'POST'])
+def new_topic(user_id, forum_id):
+    user = User.query.get(user_id)
     forum = Forum.query.get(forum_id)
 
     if request.method == 'POST':
@@ -198,9 +199,10 @@ def new_topic(forum_id):
 
         return redirect(url_for('topic', topic_id=new_topic.id))
 
-    return render_template('new_topic.html', forum=forum)
+    return render_template('new_topic.html', forum=forum, user=user)
 
 
+@login_required
 @app.route('/topic/<int:topic_id>')
 def topic(topic_id):
     user_id = session.get('user_id')

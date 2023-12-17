@@ -2,23 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ topic.title }} - тема</title>
+    <title>Elysium</title>
+    <link rel="stylesheet" href="../static/styles/topic.css">
 </head>
 <body>
-{% include 'header.html' %}
-<h1>{{ topic.title }} - тема</h1>
-<p>{{ topic.content }}</p>
-<h2>Comments</h2>
-<ul>
-    {% for comment in topic.comments %}
-    <li>{{ comment.content }}</li>
-    {% endfor %}
-</ul>
-<form method="post" action="{{ url_for('add_comment', topic_id=topic.id) }}">
-    <label for="content">Add Comment:</label>
-    <textarea name="content" required></textarea>
-    <br>
-    <button type="submit">Submit Comment</button>
-</form>
+    {% include 'header.html' %}
+    <h2 style="text-align: center; margin-top: 20px;">Тема «{{ topic.title }}»</h2>
+    <p style="text-align: center">{{ topic.content }}</p>
+    <p style="text-align: left; margin-left: 30px; margin-bottom: 20px; font-size: 20px">Комментарии</p>
+    <ul>
+        {% for comment in topic.comments %}
+        <li class="li"><b>{{ user.username }}:</b>  {{ comment.content }}</li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="{{ url_for('add_comment', topic_id=topic.id) }}">
+        <label for="content">Написать комментарий:</label>
+        <br>
+        <textarea style="margin-left: 30px;" name="content" required></textarea>
+        <br>
+        <button class="button" type="submit">Отправить</button>
+    </form>
 </body>
 </html>
