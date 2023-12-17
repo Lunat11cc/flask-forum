@@ -179,7 +179,6 @@ def create_forum():
     return render_template('create_forum.html', user=user)
 
 
-
 @login_required
 @app.route('/topics/<int:forum_id>')
 def topic_list(forum_id):

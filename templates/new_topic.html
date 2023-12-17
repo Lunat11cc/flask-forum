@@ -3,21 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <title>Elysium</title>
-    <link rel="stylesheet" href="../static/styles/new_topic.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-BC4YOUnk6UM7y2Cu1NtyCX0O8eSiUKGlnTi6R8v/XQWeL9eFfjKx6IBDPkGYoGqyZ7Q2FuLvGbBSr5CVIp5M6w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet">
 </head>
-<body>
-{% include 'header.html' %}
+<body style="font-family: 'Montserrat', sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;">
+<header style="position: relative;
+    background-color: #fff;
+    padding: 10px 0;" class="p-3 mb-3">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+            <a href="/home" style="text-decoration: none">
+                <p style="font-family: 'Montserrat', sans-serif;
+    color: rgba(0, 182, 88, 0.57);
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    padding: 10px;
+    font-size: 25px;" class="logo">Elysium</p>
+            </a>
+
+            <ul style="margin-left: 20px;
+    margin-bottom: 0;
+    font-size: 16px;" class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li style="margin-bottom: 0;"><a href="/forums" class="nav-link px-2 link-body-emphasis">Список
+                    форумов</a></li>
+                <li style="margin-bottom: 0;"><a href="/create_forum" class="nav-link px-2 link-body-emphasis">Создать
+                    форум</a></li>
+            </ul>
+
+            {% if 'user_id' in session %}
+            {% if user.profile_picture %}
+            <div style="display: flex; justify-content: center; align-items: center; gap: 20px">
+                <a href="/profile">
+                    <img src="{{ url_for('static', filename='uploads/' + user.profile_picture) }}"
+                         alt="Profile Picture" width="32" height="32" class="rounded-circle">
+                </a>
+                <p style="margin-top: 15px;">Личный кабинет</p>
+            </div>
+            {% else %}
+            <div style="display: flex; justify-content: center; align-items: center; gap: 20px">
+                <a href="/profile">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.0002 22.7501C11.3302 22.7501 10.6502 22.5801 10.0502 22.2301L4.11016 18.8001C2.91016 18.1001 2.16016 16.8101 2.16016 15.4201V8.58011C2.16016 7.19011 2.91016 5.90011 4.11016 5.20011L10.0502 1.77012C11.2502 1.07012 12.7402 1.07012 13.9502 1.77012L19.8902 5.20011C21.0902 5.90011 21.8402 7.19011 21.8402 8.58011V15.4201C21.8402 16.8101 21.0902 18.1001 19.8902 18.8001L13.9502 22.2301C13.3502 22.5801 12.6702 22.7501 12.0002 22.7501ZM12.0002 2.7501C11.5902 2.7501 11.1702 2.8601 10.8002 3.0701L4.86016 6.5001C4.12016 6.9301 3.66016 7.72011 3.66016 8.58011V15.4201C3.66016 16.2701 4.12016 17.0701 4.86016 17.5001L10.8002 20.9301C11.5402 21.3601 12.4602 21.3601 13.2002 20.9301L19.1402 17.5001C19.8802 17.0701 20.3402 16.2801 20.3402 15.4201V8.58011C20.3402 7.73011 19.8802 6.9301 19.1402 6.5001L13.2002 3.0701C12.8302 2.8601 12.4102 2.7501 12.0002 2.7501Z"
+                              fill="black"/>
+                        <path d="M11.9999 11.7498C10.2999 11.7498 8.91992 10.3698 8.91992 8.6698C8.91992 6.9698 10.2999 5.58984 11.9999 5.58984C13.6999 5.58984 15.0799 6.9698 15.0799 8.6698C15.0799 10.3698 13.6999 11.7498 11.9999 11.7498ZM11.9999 7.08984C11.1299 7.08984 10.4199 7.7998 10.4199 8.6698C10.4199 9.5398 11.1299 10.2498 11.9999 10.2498C12.8699 10.2498 13.5799 9.5398 13.5799 8.6698C13.5799 7.7998 12.8699 7.08984 11.9999 7.08984Z"
+                              fill="black"/>
+                        <path d="M16 17.4103C15.59 17.4103 15.25 17.0703 15.25 16.6603C15.25 15.2803 13.79 14.1504 12 14.1504C10.21 14.1504 8.75 15.2803 8.75 16.6603C8.75 17.0703 8.41 17.4103 8 17.4103C7.59 17.4103 7.25 17.0703 7.25 16.6603C7.25 14.4503 9.38 12.6504 12 12.6504C14.62 12.6504 16.75 14.4503 16.75 16.6603C16.75 17.0703 16.41 17.4103 16 17.4103Z"
+                              fill="black"/>
+                    </svg>
+                </a>
+                <p style="margin-top: 15px;">Личный кабинет</p>
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</header>
 <div>
-    <h1>{{ forum.title }} - новая тема</h1>
-<form method="post">
-    <label for="title">Название:</label>
-    <input type="text" name="title" required>
-    <br>
-    <label for="content">Описание:</label>
-    <textarea name="content" required></textarea>
-    <br>
-    <button type="submit">Создать</button>
-</form>
+    <h2 style="text-align: center; margin-top: 30px; margin-bottom: 30px">«{{ forum.title }}» - новая тема</h2>
+    <form style="background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-sizing: border-box;" method="post">
+        <label style="display: block;
+    margin: 15px 0 8px;
+    color: #333;" for="title">Название:</label>
+        <input style="background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+    border-radius: 4px;
+    box-sizing: border-box;" type="text" name="title" required>
+        <br>
+        <label style="display: block;
+    margin: 15px 0 8px;
+    color: #333;" for="content">Описание:</label>
+        <textarea style="background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 150px;" name="content" required></textarea>
+        <br>
+        <button style="  border: 1px solid rgba(0, 182, 88, 0.57);
+    background: rgba(0, 182, 88, 0.57);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    border-radius: 25px;" type="submit">Создать
+        </button>
+    </form>
 </div>
 </body>
 </html>

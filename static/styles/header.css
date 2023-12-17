@@ -33,18 +33,4 @@ ul.nav li {
     margin-bottom: 0;
 }
 
-#moon-icon {
-    width: 32px;
-    height: 32px;
-    margin-right: 370px;
-    cursor: pointer;
-}
-
-body.dark-theme, body.dark-theme header {
-    background-color: #121212;
-}
-
-body.dark-theme ul.nav li a {
-    color: #fff !important;
-}
 
