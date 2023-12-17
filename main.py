@@ -41,12 +41,16 @@ class Topic(db.Model):
     content = db.Column(db.Text, nullable=False)
     forum_id = db.Column(db.Integer, db.ForeignKey('forum.id'), nullable=False)
     forum = db.relationship('Forum', backref=db.backref('topics', lazy=True))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user = db.relationship('User', backref=db.backref('topics', lazy=True))
 
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
     topic_id = db.Column(db.Integer, db.ForeignKey('topic.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user = db.relationship('User', backref=db.backref('comments', lazy=True))
     topic = db.relationship('Topic', backref=db.backref('comments', lazy=True))
 
 
@@ -193,7 +197,7 @@ def new_topic(user_id, forum_id):
         title = request.form['title']
         content = request.form['content']
 
-        new_topic = Topic(title=title, content=content, forum=forum)
+        new_topic = Topic(title=title, content=content, forum=forum, user=user)
         db.session.add(new_topic)
         db.session.commit()
 
@@ -209,7 +213,7 @@ def topic(topic_id):
     if user_id:
         user = User.query.get(user_id)
         topic = Topic.query.get(topic_id)
-        return render_template('topic.html', user=user, topic=topic)
+        return render_template('topic.html', user=user, topic=topic, current_user=user)
     else:
         return redirect('/login')
 
@@ -218,12 +222,37 @@ def topic(topic_id):
 @app.route('/topic/<int:topic_id>/add_comment', methods=['POST'])
 def add_comment(topic_id):
     content = request.form['content']
+    user_id = session['user_id']
 
-    new_comment = Comment(content=content, topic_id=topic_id)
+    new_comment = Comment(content=content, topic_id=topic_id, user_id=user_id)
     db.session.add(new_comment)
     db.session.commit()
 
     return redirect(url_for('topic', topic_id=topic_id))
+
+
+@login_required
+@app.route('/comment/<int:comment_id>/delete', methods=['POST'])
+def delete_comment(comment_id):
+    comment = Comment.query.get_or_404(comment_id)
+
+    if comment.user_id == session['user_id']:
+        db.session.delete(comment)
+        db.session.commit()
+
+    return redirect(url_for('topic', topic_id=comment.topic_id))
+
+
+@login_required
+@app.route('/topic/<int:topic_id>/delete', methods=['POST'])
+def delete_topic(topic_id):
+    topic = Topic.query.get_or_404(topic_id)
+
+    if topic.user_id == session['user_id']:
+        db.session.delete(topic)
+        db.session.commit()
+
+    return redirect(url_for('forum_list'))
 
 
 @app.route('/logout')
