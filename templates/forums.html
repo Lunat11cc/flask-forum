@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elysium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="../static/styles/forums.css">
+</head>
+<body>
+    {% include 'header.html' %}
+    <div class="forum-list">
+        <h2>Форумы</h2>
+        <ul>
+            {% for forum in forums %}
+                <li class="li">
+                    <i style="padding: 5px;" class="fas fa-comments icon"></i>
+                    <a href="{{ url_for('topic_list', forum_id=forum.id) }}">
+                        {{ forum.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

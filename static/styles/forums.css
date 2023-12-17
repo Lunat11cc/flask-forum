@@ -1,0 +1,47 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f6f5f7;
+    margin: 0;
+}
+
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.forum-list {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.li {
+    margin: 10px 0;
+}
+
+a {
+    text-decoration: none !important;
+    color: #333 !important;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.1s ease-in-out;
+}
+
+a:hover {
+    color: rgba(0, 182, 88, 0.57) !important;
+}

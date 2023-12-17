@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ topic.title }}</title>
+</head>
+<body>
+{% include 'header.html' %}
+<h1>{{ topic.title }}</h1>
+<p>{{ topic.content }}</p>
+<h2>Posts</h2>
+<ul>
+    {% for post in topic.posts %}
+    <li>{{ post.content }}</li>
+    {% endfor %}
+</ul>
+
+<form method="post" action="{{ url_for('view_topic', topic_id=topic.id) }}">
+    <label for="content">Добавить запись</label>
+    <textarea id="content" name="content" required></textarea><br>
+    <input type="submit" value="Add Post">
+</form>
+</body>
+</html>

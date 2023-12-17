@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ forum.title }} - новая тема</title>
+    <link rel="stylesheet" href="../static/styles/new_topic.css">
+</head>
+<body>
+{% include 'header.html' %}
+<h1>{{ forum.title }} - новая тема</h1>
+<form method="post">
+    <label for="title">Title:</label>
+    <input type="text" name="title" required>
+    <br>
+    <label for="content">Content:</label>
+    <textarea name="content" required></textarea>
+    <br>
+    <button type="submit">Create Topic</button>
+</form>
+</body>
+</html>

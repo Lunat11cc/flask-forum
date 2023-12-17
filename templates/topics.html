@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ forum.title }} - темы</title>
+    <link rel="stylesheet" href="../static/styles/topics.css">
+</head>
+<body>
+{% include 'header.html' %}
+<h1>{{ forum.title }} - темы</h1>
+<ul>
+    {% for topic in topics %}
+    <li><a href="{{ url_for('topic', topic_id=topic.id) }}">{{ topic.title }}</a></li>
+    {% endfor %}
+</ul>
+</body>
+</html>

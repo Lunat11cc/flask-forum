@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elysium</title>
+    <link rel="stylesheet" href="../static/styles/auth.css">
+</head>
+<body>
+
+<h2>Пожалуйста, войдите в аккаунт или создайте новый</h2>
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form action="/register" method="POST" enctype="multipart/form-data">
+            <h1>Регистрация</h1>
+            <input type="text" name="username" placeholder="Имя"/>
+            <input type="email" name="email" placeholder="Почта"/>
+            <input type="password" name="password" placeholder="Пароль"/>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 15px">
+                <label for="profile_picture" class="file-label">
+                    <span>+</span>
+                    <input type="file" id="profile_picture" name="profile_picture" accept=".png, .jpg, .jpeg"
+                           onchange="updateFileName(this)"/>
+                </label>
+                <p id="file-name">Фото профиля</p>
+            </div>
+            <button class="btn" type="submit">Вход</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form action="/login" method="POST">
+            <h1>Авторизация</h1>
+            <input type="email" name="email" placeholder="Почта"/>
+            <input type="password" name="password" placeholder="Пароль"/>
+            <button class="btn" type="submit">Вход</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Добро пожаловать!</h1>
+                <p>Для поддержки связи, войдите в систему</p>
+                <button class="ghost" id="signIn">Авторизация</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Добро пожаловать!</h1>
+                <p>Введите свои личные данные и начните общаться</p>
+                <button class="ghost" id="signUp">Регистрация</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+
+    function updateFileName(input) {
+        const fileName = input.files[0].name;
+        document.getElementById('file-name').innerText = fileName;
+    }
+</script>
+
+</body>
+</html>

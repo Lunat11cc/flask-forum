@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ topic.title }} - тема</title>
+</head>
+<body>
+{% include 'header.html' %}
+<h1>{{ topic.title }} - тема</h1>
+<p>{{ topic.content }}</p>
+<h2>Comments</h2>
+<ul>
+    {% for comment in topic.comments %}
+    <li>{{ comment.content }}</li>
+    {% endfor %}
+</ul>
+<form method="post" action="{{ url_for('add_comment', topic_id=topic.id) }}">
+    <label for="content">Add Comment:</label>
+    <textarea name="content" required></textarea>
+    <br>
+    <button type="submit">Submit Comment</button>
+</form>
+</body>
+</html>

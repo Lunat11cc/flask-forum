@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elysium</title>
+    <link rel="stylesheet" href="../static/styles/create_forum.css">
+</head>
+<body>
+    {% include 'header.html' %}
+    <h2 style="margin-top: 30px; margin-bottom: 30px;">Создайте свой форум!</h2>
+    <form method="post">
+        <label for="title">Название:</label>
+        <input class="input" type="text" name="title" required>
+        <br>
+        <label for="description">Описание:</label>
+        <textarea name="description" required></textarea>
+        <br>
+        <button type="submit">Создать</button>
+    </form>
+</body>
+</html>
