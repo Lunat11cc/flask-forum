@@ -11,12 +11,19 @@
     <div class="forum-list">
         <h2>Форумы</h2>
         <ul>
+            <div class="line"></div>
             {% for forum in forums %}
                 <li class="li">
                     <i style="padding: 5px;" class="fas fa-comments icon"></i>
                     <a href="{{ url_for('topic_list', forum_id=forum.id) }}">
                         {{ forum.title }}
                     </a>
+                    {% if user.id == forum.user_id %}
+                        <form class="delete-form" method="post" action="{{ url_for('delete_forum', forum_id=forum.id) }}">
+                            <button class="delete-forum" type="submit">Удалить</button>
+                        </form>
+                    {% endif %}
+                    <div class="line"></div>
                 </li>
             {% endfor %}
         </ul>

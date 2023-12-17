@@ -11,8 +11,10 @@
 <div class="topics_list">
     <h2>«{{ forum.title }}» - темы</h2>
     <ul>
+        <div class="line"></div>
         {% for topic in topics %}
             <li class="li"><i style="padding: 8px;" class="fas fa-book"></i><a class="themes" href="{{ url_for('topic', topic_id=topic.id) }}">{{ topic.title }}</a></li>
+            <div class="line"></div>
         {% endfor %}
     </ul>
 </div>

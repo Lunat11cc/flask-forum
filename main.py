@@ -33,6 +33,8 @@ class Forum(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user = db.relationship('User', backref=db.backref('forums', lazy=True))
 
 
 class Topic(db.Model):
@@ -168,13 +170,14 @@ def create_forum():
         title = request.form['title']
         description = request.form['description']
 
-        new_forum = Forum(title=title, description=description)
+        new_forum = Forum(title=title, description=description, user_id=user.id)
         db.session.add(new_forum)
         db.session.commit()
 
         return redirect(url_for('forum_list'))
 
     return render_template('create_forum.html', user=user)
+
 
 
 @login_required
@@ -229,6 +232,18 @@ def add_comment(topic_id):
     db.session.commit()
 
     return redirect(url_for('topic', topic_id=topic_id))
+
+
+@login_required
+@app.route('/delete_forum/<int:forum_id>', methods=['POST'])
+def delete_forum(forum_id):
+    forum = Forum.query.get_or_404(forum_id)
+
+    if forum.user_id == session['user_id']:
+        db.session.delete(forum)
+        db.session.commit()
+
+    return redirect(url_for('forum_list'))
 
 
 @login_required

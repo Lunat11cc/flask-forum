@@ -37,3 +37,38 @@ a {
 a:hover {
     color: rgba(0, 182, 88, 0.57) !important;
 }
+
+.line {
+    width: 75%;
+    height: 0.5px;
+    background-color: black;
+    margin-top: 15px;
+}
+
+.delete-forum {
+    border: 1px solid red;
+    background: red;
+    color: #FFFFFF;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 5px 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    border-radius: 25px;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+
+.delete-forum:hover {
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+.delete-forum:active {
+    transform: scale(0.95);
+}
+
+.delete-forum:focus {
+    outline: none;
+}

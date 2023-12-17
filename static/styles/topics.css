@@ -51,6 +51,13 @@ ul {
     color: rgba(0, 182, 88, 0.57) !important;
 }
 
+.line {
+    width: 75%;
+    height: 0.5px;
+    background-color: black;
+    margin-top: 15px;
+}
+
 .add_theme {
     border: 1px solid rgba(0, 182, 88, 0.57);
     background: rgba(0, 182, 88, 0.57);
