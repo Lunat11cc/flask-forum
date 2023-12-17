@@ -7,11 +7,14 @@
 </head>
 <body>
 {% include 'header.html' %}
-<h1>{{ forum.title }} - темы</h1>
-<ul>
-    {% for topic in topics %}
-    <li><a href="{{ url_for('topic', topic_id=topic.id) }}">{{ topic.title }}</a></li>
-    {% endfor %}
-</ul>
+<h2 style="margin-top: 30px; margin-bottom: 30px;">{{ forum.title }} - темы</h2>
+<div>
+    <ul>
+        {% for topic in topics %}
+            <li><a href="{{ url_for('topic', topic_id=topic.id) }}">{{ topic.title }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('new_topic', forum_id=forum.id) }}" class="btn">Создать тему</a>
+</div>
 </body>
 </html>
