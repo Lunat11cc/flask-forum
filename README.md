@@ -35,15 +35,14 @@
 ![image](https://github.com/Lunat11cc/flask-forum/assets/107105044/97e7a48c-d470-44af-9a30-5f0f33b199c3)
 <br></br>
 
-✅ Страница "Тема"
-
-![image](https://github.com/Lunat11cc/flask-forum/assets/107105044/0af9610b-10a0-4d06-97ee-7ae1ba65b4f1)
-<br></br>
-
-
 ✅ Страница "Создать форум"
 
 ![image](https://github.com/Lunat11cc/flask-forum/assets/107105044/323db585-7b49-4b12-9725-0a1cfb2a704c)
+<br></br>
+
+✅ Страница "Список форумов"
+
+![image](https://github.com/Lunat11cc/flask-forum/assets/107105044/0af9610b-10a0-4d06-97ee-7ae1ba65b4f1)
 <br></br>
 
 ✅ Страница "Форум"
